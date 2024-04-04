@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Card </title>
+        <link href="../css/5form.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        
+       <center>
+        <marquee><h1 id ="topic">Topic:</h1></marquee>
+        </center>
+
+        <div class="container">
+            <div  class="first-column">
+                <form name="my-form" class="entry-form">
+                    <div class="input-form">
+                        <label class="label">Enter your name</label>
+                        <input  type="text" class="input-field" name="name">
+                    </div>
+
+    
+                    
+                    <!-- Textarea -->
+                    <div class="input-form">
+                        <label class="label" >Write a few words about you</label>
+                        <textarea name="bio"></textarea>
+                    </div>
+                
+                
+                <!-- Dropdown select menu -->
+                <div class="input-form">
+
+                <label  class="label" >Select you favorite color</label>
+                    <select name="fav-color">
+                        <option value=""> Select your color : </option>
+                        <option value="red">Red</option>
+                        <option value="green">Green</option>
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+
+                    </select>
+                </div>
+
+                <div class="input-form">
+                
+                    <div class="radio-button">
+                        <label class="label" >Gender : </label>
+                        <span> Male </span>
+                        <input  type="radio" name="gender" value="male">
+
+                        <span> Female </span>
+                        <input  type="radio" name="gender" value="female">
+
+                    </div>
+                </div>
+
+                <div class="input-form">
+                    <div class="checkboxes">
+                        <label  class="label">Select the foods you like</label>
+                        <span>Pizza</span>
+                        <input class="fav-foods" type="checkbox"    name="foods[]" value="pizza">
+
+                        <span>Burger</span>
+                        <input class="fav-foods" type="checkbox" name="foods[]" value="burger">
+
+                        <span>Broccoli</span>
+                        <input class="fav-foods" type="checkbox" name="foods[]" value="broccoli">
+
+                    </div>
+                </div>
+                
+
+
+                <!-- Submit button -->
+                <!-- with function call -->
+                <!-- <button type="button" name="submit" onclick="fir()">Submit</button> -->
+                <div class="input-form">
+                <button type="submit" class="submit-button" name="submit">Submit</button>
+                </div>
+                </form>
+
+            </div>
+
+            <div  class="second-column">
+
+                <div class="out">
+                    <sajal>
+                       <p>Name:</p>
+                       <p>Bio:</p>
+                       <p class="fav-color">Fav color:</p>
+                       <p>Gender:</p>
+                       <p>Fav food:</p>
+                    </sajal>
+                 </div>
+   
+               </div>
+
+        </div>
+
+    </body>
+</html>
+
+
+
+<script>
+    document.getElementById("topic").innerHTML ="JavaScript Form submission ";
+    let form = document.forms["my-form"]
+    form.addEventListener("submit", getValues);
+    function getValues(event){
+        event.preventDefault();
+
+        let formData = {
+            "name": this.name.value,
+            "bio": this.bio.value,
+            "fav-color": this['fav-color'].value,
+            "gender": this.gender.value,
+            "fav-food": []
+        }
+
+        
+
+
+    let favFoods = document.querySelectorAll(".fav-foods");
+    for (let food of favFoods){
+        if(food.checked == true){
+            formData['fav-food'].push(food.value);
+        }
+    }   
+
+
+    let	out = `
+    <p>Name: <span style="color: #32749a;">${formData.name}</span></p>
+      <p>Bio: <span style="color: #32749a;" >${formData.bio}</span></p>
+      <p>Fav color: <span style="color: #32749a;" >${formData['fav-color']}</span></p>
+      <p>Gender: <span style="color: #32749a;" >${formData.gender}</span></p>
+      <p>Fav food: <span style="color: #32749a;" >${formData["fav-food"]}</span></p>
+   `;
+ 
+   document.querySelector(".out sajal").innerHTML = out;
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+    // function fir(){
+    //     console.log("============", document.forms["my-form"].firstname.value)
+    // document.forms["my-form"]["fav-color"].value
+    //     document.getElementById("name").innerHTML=document.forms["my-form"].firstname.value
+
+    // }
+
+
+//     function fir(){
+
+    
+
+//     let favFoods = document.querySelectorAll(".fav-foods");
+//     let checkedFoods = [];
+//     for(let food of favFoods){
+//         if(food.checked ==true){
+//             checkedFoods.push(food.value);
+//         }
+        
+//     }
+//     // console.log("++++++++++++++++",checkedFoods)
+
+// }
+
+
+
+    //  loops normal
+    // for (i=0; i<10; i++){
+    //     console.log("i for loop",i)
+    // }
+
+    // // inloop
+    // const person = { name:"sajal", class:"b tech"}
+    // for(let x in person){
+    //     console.log("Person : ",person[x])
+    // }
+    // const  fruits = ["mango","banana","lichi","apple"]
+
+
+    // // of loop
+    // for( let f in fruits){
+    //     console.log("fruits : ", fruits[f])
+    // }
+
+
+
+    </script>
